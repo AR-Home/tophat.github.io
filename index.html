@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <button onclick="clearResult()">C</button>
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+        <button onclick="appendOperator('+')">+</button>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+        <button onclick="appendOperator('-')">-</button>
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+        <button onclick="appendOperator('*')">*</button>
+        <button onclick="appendNumber(0)">0</button>
+        <button onclick="appendOperator('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="appendOperator('/')">/</button>
+    </div>
+
+    <script>
+        function clearResult() {
+            document.getElementById("result").value = "";
+        }
+        
+        function appendNumber(number) {
+            document.getElementById("result").value += number;
+        }
+        
+        function appendOperator(operator) {
+            var result = document.getElementById("result").value;
+            var lastChar = result[result.length - 1];
+            
+            if (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
+                result = result.slice(0, -1);
+            }
+            
+            document.getElementById("result").value = result + operator;
+        }
+        
+        function calculate() {
+            var result = eval(document.getElementById("result").value);
+            document.getElementById("result").value = result;
+        }
+    </script>
+</body>
+</html>
